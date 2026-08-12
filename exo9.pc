@@ -1,0 +1,27 @@
+Algorithme TypeDeTriangle
+
+
+DEBUT
+
+Variable a, b, c : Reel
+    Ecrire "Entrez la longueur du premier côté :"
+    LIRE a
+    Ecrire "Entrez la longueur du deuxième côté :"
+    LIRE b
+    Ecrire "Entrez la longueur du troisième côté :"
+    LIRE c
+
+    SI (a <= 0 OU b <= 0 OU c <= 0) ALORS
+        Ecrire "Erreur : Les longueurs doivent être strictement positives."
+    SINON SI (a + b <= c OU a + c <= b OU b + c <= a) ALORS
+        Ecrire "Impossible : Ces longueurs ne satisfont pas l'inégalité triangulaire."
+    SINON
+        SI (a == b ET b == c) ALORS
+            Ecrire "Le triangle est ÉQUILATÉRAL."
+        SINON SI (a == b OU a == c OU b == c) ALORS
+            Ecrire "Le triangle est ISOCÈLE."
+        SINON
+            Ecrire ("Le triangle est SCALÈNE.")
+        FIN SI
+    FIN SI
+FIN

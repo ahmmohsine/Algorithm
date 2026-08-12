@@ -1,0 +1,52 @@
+ALGORITHME CalculFactureElectricite
+
+VARIABLES
+    consommation : REEL
+    montant_ht : REEL
+    taxe : REEL
+    montant_ttc : REEL
+    
+    // Définition des constantes de tarification
+    TARIF_T1 = 0.15 : REEL
+    TARIF_T2 = 0.25 : REEL
+    TARIF_T3 = 0.40 : REEL
+    
+    SEUIL_SURTAXE = 500 : REEL
+    TAUX_SURTAXE = 0.10 : REEL
+
+DEBUT
+    // 1. Saisie et validation
+    Ecrire ("Entrez la consommation totale en kWh :")
+    LIRE (consommation)
+
+    SI (consommation < 0) ALORS
+        Ecrire ("Erreur : La consommation ne peut pas être négative.")
+    SINON
+        // 2. Calcul du montant Hors-Taxe par tranches marginales
+        SI (consommation <= 100) ALORS
+            montant_ht = consommation * TARIF_T1
+            
+        SINON SI (consommation <= 300) ALORS
+            montant_ht = (100 * TARIF_T1) + ((consommation - 100) * TARIF_T2)
+            
+        SINON
+            montant_ht = (100 * TARIF_T1) + (200 * TARIF_T2) + ((consommation - 300) * TARIF_T3)
+        FIN SI
+
+        // 3. Application de la taxe de dépassement
+        SI (consommation > SEUIL_SURTAXE) ALORS
+            taxe = montant_ht * TAUX_SURTAXE
+        SINON
+            taxe = 0.0
+        FIN SI
+
+        montant_ttc = montant_ht + taxe
+
+        // 4. Affichage du détail de la facture
+        Ecrire ("--- DÉTAIL DE LA FACTURE ---")
+        Ecrire ("Consommation totale : ")+consommation+(" kWh")
+        Ecrire ("Montant HT         : ")+montant_ht+(" €")
+        Ecrire ("Surtaxe appliquée  : ")+ taxe, (" €")
+        Ecrire ("Total à payer TTC  : ")+ montant_ttc+ (" €")
+    FIN SI
+FIN

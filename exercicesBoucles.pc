@@ -1,0 +1,162 @@
+/*À l’aide d’une boucle, faire l'algo qui permet d'afficher la table de multiplication par 2.*/
+Algorithme TableMultiplicationDeux
+DEBUT
+    Variable cpt : Entier
+    cpt = 0
+    TANTQUE(cpt<=10)
+        Ecrire(cpt+" x 2 = "+cpt*2)
+        cpt = cpt + 1
+    FINTQ 
+FIN
+
+/*À l’aide de deux boucles, faire l'algo qui permet d'afficher les tables de multiplication de 1 à 9.*/
+
+Algorithme TableMultiplication1_9
+DEBUT
+    Variable i,j : Entier
+    i,j = 0
+    TANTQUE(i<=10)
+        j=0
+        TANTQUE(j<=10)
+            Ecrire(j+" x "+i+" = "+(i*j))
+            j = j + 1
+        FINTQ
+        i= i + 1
+    FINTQ 
+FIN
+
+/*Reprenez l’algorithme du lanceur de balles de tennis et faites en sorte qu’on lance une balle tant q
+ue le stock n’est pas vide. Redemandez chaque tour si le joueur est prêt avant de lancer.
+• Lanceur de balles de tennis (Pseudo-Code) Réaliser l’algorithme d’un lanceur de balles de tennis. 
+Ce lanceur possède deux états :
+– prêt: permet de savoir si le tennisman est prêt. 
+Il ne faut pas lancer de balles dans le cas contraire
+– panierVide: permet de savoir s’il y a encore des balles disponibles 
+Le lanceur de balle possède l’opération « lancerBalle » qui, 
+vous l’aurez compris, permet de lancer une balle.*/
+
+Algorithme essayerLancerBalleTQ()
+Variable balleEnStock : Entier
+Variable estPret : Booleen 
+Ecrire("Veuillez introduire le nombre de balle!")
+Lire(balleEnStock)
+Ecrire("Etes vous prêt?")
+Lire(estPret)
+DEBUT
+    TANTQUE(balleEnStock>0 ET estPret)
+        lancerBalle()
+        balleEnStock = balleEnStock - 1
+        Ecrire("Etes vous prêt?")
+        Lire(estPret)
+    FINTQ
+    SI (balleEnStock==0) ALORS
+        Ecrire ("Impossible de lancer : Le panier est vide.")
+    SINON
+        Ecrire("Impossible de lancer : Le joueur n'est pas prêt.")
+FIN
+
+/*À l’aide d’une boucle, améliorez l’algorithme du distributeur de
+boissons pour qu’il demande au client s’il désire une autre boisson
+ (jusqu’à ce qu’il n’en ait plus envie ou que le stock de toutes 
+ les boissons soient épuisé).*/
+Algorithme DistributeurBoissons()
+Variable stockFanta,stockCola,stockEau, choix : ENTIER
+Variable continuer : TEXTE
+
+DEBUT
+    stockCola = 10;
+    stockFanta = 10;
+    stockEau = 10;
+    continuer = "OUI"
+    FAIRE
+        Ecrire("1 - Eau - Stock : ", stockEau)
+        Ecrire("2 - Cola - Stock : ", stockCola)
+        Ecrire("3 - Fanta - Stock : ", stockFanta)
+        Ecrire("Faites votre choix (1, 2 ou 3) :")
+        LIRE(choix)
+        SELONQUE choix VAUT
+            1 : SI(stockEau>0) 
+                    Ecrire ("Distribution de la boisson en cours...")
+                    stockEau = stockEau - 1
+                SINON
+                    Ecrire("Désolé, l'eau est en rupture de stock.")
+                FINSI
+                
+            2 : SI(stockCola>0) 
+                    Ecrire ("Distribution de la boisson en cours...")
+                    stockCola = stockCola - 1
+                SINON
+                    Ecrire("Désolé, Cola est en rupture de stock.")
+                FINSI
+            3 : SI(stockFanta>0) 
+                   Ecrire ("Distribution de la boisson en cours...")
+                   stockFanta = stockFanta - 1
+                SINON
+                    Ecrire("Désolé, Fanta est en rupture de stock.")
+                FINSI
+            SINON : Ecrire("Choix invalide!")
+        FINSQ
+
+        SI (stockEau == 0 ET stockCola == 0 ET stockFanta == 0) ALORS
+            Ecrire("Machine vide : Plus aucune boisson disponible.")
+        SINON
+            Ecrire ("Désirez-vous une autre boisson ? (OUI / NON) :")
+            LIRE(continuer)
+        FIN SI
+    TANTQUE((continuer=="OUI" ET (stockEau >0 OU stockCola>0 OU stockFanta > 0)) )
+FIN
+
+ /*Jeu du plus ou moins : Faire un algo qui demande à l'utilisateur quel niveau de difficulté il désire jouer. 
+ Facile : Il faudra trouver un nombre entre 1 et 10 avec 4 essais. Moyen : Il faudra trouver un nombre entre 
+ 1 et 100 avec 10 essais. Difficile : Il faudra trouver un nombre entre 1 et 1000 avec 15 essais. Le joueur 
+ propose un nombre tant qu'il n'a pas trouvé le bon nombre et qu'il lui reste des tentatives. À la fin, 
+ demandez lui s'il veut rejouer.*/
+
+ Algorithme PlusOuMoins()
+ Variable nombreATrouver,maxEssais,nbEssais,nbMax,nbMin,nbChoisi:ENTIER
+ Variable trouvé:Booleen
+
+ DEBUT
+    maxEssais = 0
+    nbMin = 1
+    nbMax = 0
+    trouve = FAUX
+    nbEssais = 0
+    nombreATrouver = 0
+    
+    FAIRE 
+        Ecrire("1- Facile (1 à 10, 4 essais)")
+        Ecrire("2- Moyen (1 à 100, 10 essais)")
+        Ecrire("3- Difficile (1 à 1000, 15 essais)")
+        Lire(choix)
+        SELONQUE choix VAUT
+            1 : nombreATrouver = Random(1,10)
+                maxEssais = 4
+                nbMax = 10
+            2 : nombreATrouver = Random(1,100)
+                maxEssais = 10
+                nbMax = 100
+            3 : nombreATrouver = Random(1,1000)
+                maxEssais = 15
+                nbMax = 1000
+            SINON : Ecrire("Erreur : Option invalide. Veuillez saisir 1, 2 ou 3.")
+        FINSQ
+    TANTQUE(nombreATrouver == 0)
+    
+    TANTQUE NON trouve ET nbEssais < maxEssais FAIRE
+        Ecrire("Il vous reste "+nbEssai+" essai")
+        Ecrire("Donnez un nombre entre "+nbMin+" et "+nbMax)
+        Lire(nbChoisi)
+        SI (nbChoisi == nombreATrouver) ALORS
+            Ecrire("Trouvé !")
+            trouve = VRAI
+        FIN SI
+        nbEssais= nbEssais + 1
+    FINTQ
+    SI(trouve)
+        Ecrire("Félicitation! vous avez gagné!")
+    SINON
+        Ecrire("Vous avez épuisé vos ", maxEssais, " essais.")
+        Ecrire("Le nombre à trouvé était : ", nombreATrouver)
+    FINSI 
+FIN

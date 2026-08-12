@@ -1,0 +1,145 @@
+
+/*Écrire un algorithme qui saisit 6 entiers et les stocke dans un tableau, puis affiche le contenu de ce tableau une fois qu’il est rempli.*/
+Algorithme StockerInfos
+    Constante : 
+        TAILLE = 6 Entier
+    Variable :
+        tabEntiers : Tableau[6] de Entier,
+        number : Entier
+DEBUT
+        POUR indice DE 0 À TAILLE-1 [PAR 1] FAIRE
+            Lire(number)
+            tabEntiers[indice] = number
+        FINP
+        POUR indice DE 0 À TAILLE-1 [PAR 1] FAIRE
+            Ecrire(tabEntiers[indice])
+        FINP
+FIN
+
+/*
+Écrire un algorithme demandant à l’utilisateur le nombre de joueurs (il doit entrer un nombre entre 
+1 et max 10 joueurs). Ensuite, l’algorithme doit demander à l’utilisateur le score de chaque joueur 
+pour les stocker dans un tableau qui fera la taille nécessaire. Une fois ceci fini, il faut afficher 
+la moyenne des scores.
+*/
+
+Algorithme MoyenScore()
+ Variable : 
+            nbJoueur:Entier
+            score,total,moyenne:Reel
+ DEBUT
+ FAIRE
+    Ecrire("Veuillez entrer un nombre de joueurs entre 1 et 10 compris")
+    Lire(nbJoueur)
+ TANTQUE nbJoueur <1 OU nbJoueur>10 FINTQ
+ tabScors : Tableau[nbJoueur] de Entier
+ POUR indice DE 1 À nbJoueur [PAR 1] FAIRE
+    Ecrire("Veuillez entrer le score du joueur numéro : "+indice)
+    Lire(score)
+    total = total + score
+    tabScors[indice-1] = score
+ FINP
+ moyenne = total/nbJoueur
+ Ecrire("La moyenne des scores est de: "+moyenne)
+ FIN
+
+ /*
+Réalisez un algorithme dans lequel nous devons rechercher une valeur (entrée par l'utilisateur) dans un tableau d'entiers. 
+Si on trouve cette valeur affichez l'indice trouvé. Si on ne trouve pas la valeur affichez -1.
+*/
+
+Algorithme EstExistante()
+    Constante TAILLE = 10 Entier
+    Variable tabEntiers : Tableau[TAILLE] de Entier = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+    choix ,indice,save: Entier
+    trouve : Booleen
+    DEBUT
+        trouve = FAUX
+        indice = 0
+        save = -1;
+        Ecrire("Veuillez introduire un nombre entier")
+        Lire(choix)
+        TANTQUE (indice<TAILLE ET NON trouve) FAIRE
+            SI(tabEntiers[indice]== choix)
+                trouve = VRAI
+                save = indice
+                Ecrire("Trouvé à l'indice : ")
+            FINSI
+            indice = indice + 1
+        FINTQ
+        Ecrire(save) 
+    FIN
+
+/*Inverser un tableau : soit un tableau T rempli de nombres. Changer de place
+les éléments de ce tableau de façon à ce que le nouveau tableau soit une
+sorte de miroir de l'ancien et afficher le nouveau tableau. Deux façons de faire pour celui ci, soit en 2 tableaux différents,
+ plus simple, soit avec un seul tableau.*/
+Algorithme InverserTableau()
+Constante TAILLE = 10 Entier
+Variable tabEntiers : Tableau[TAILLE] de Entier = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+         save : Entier
+DEBUT
+    POUR indice DE 0 À (TAILLE / 2)-1 PAR 1 FAIRE
+        save  = tabEntiers[indice] 
+        tabEntiers[indice] = tabEntiers[TAILLE-(indice+1)]
+        tabEntiers[TAILLE-(indice+1)] = save
+    FINP
+FIN
+ /*
+Réalisez un algorithme nous permettant de déplacer un pion dans un tableau de 10 éléments. 
+Au début, le pion se trouve dans la première case du tableau. Nous pouvons ensuite le déplacer par la gauche (g),
+ par la droite (d) ou de stopper l'algorithme (q). 
+ Attention aux bornes, on ne peut pas aller plus loin que les bords du plateau !
+*/
+
+Algorithme JeuxDuPlateau()
+Constante TAILLE = 10 
+Variable plateau : Tableau[TAILLE] de Caractere
+position : Entier
+DEBUT
+    position = 0
+    choix=''
+    FAIRE
+        POUR indice DE 0 À TAILLE-1 [PAR 1] FAIRE
+            SI(indice == position) ALORS
+                plateau[indice] = 'P'
+            SINON
+                plateau[indice] = '-'
+            FINSI
+        FINP
+        Ecrire("Déplacer : (g)auche, (d)roite, (q)uitter :")
+        Lire(choix)
+        SI (choix == g) ALORS
+            SI(position - 1 >= 0)
+                position = position - 1
+            SINON
+                Ecrire("Vous sortez du tableau !")
+            FINSI
+        SINONSI (choix == d) ALORS
+            SI (position + 1 < TAILLE) ALORS 
+                position =  position +1
+            SINON
+                Ecrire("Vous sortez du tableau !")
+            FINSI
+        FINSI
+    TANTQUE(choix != 'q')
+FIN
+
+/*À l’aide des boucles, 
+réalisez un algorithme permettant de trier un tableau d’entier dans 
+l’ordre croissant. */
+
+Algorithme TrierTableau
+Constante TAILLE = 10 Entier
+Variable tab : Tableau[TAILLE] de Entier = [61, 2, 75, 4, 5, 9, 7, 58, 29, 100]  
+DEBUT
+    POUR i DE 0 À TAILLE-2 PAR 1 FAIRE
+        POUR j DE 0 À TAILLE-2-i PAR 1 FAIRE
+            SI(tab[j]>tab[j+1])
+                save = tab[j]
+                tab[j] = tab[j+1]
+                tab[j+1] = save
+            FINSI
+        FINP
+    FINP
+FIN

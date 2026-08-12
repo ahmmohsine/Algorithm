@@ -1,0 +1,24 @@
+Algorithme While
+DEBUT
+    Variable note : Entier
+    Constante  NOTE_MIN = 0
+    Constante  NOTE_MAX = 20
+    Ecrire("Veuillez introduire une note entre 0 et 20")
+    Lire(note)
+    TANTQUE note<NOTE_MIN OU note>NOTE_MAX FAIRE
+       Ecrire("Veuillez introduire une note entre "+NOTE_MIN+" et "+NOTE_MAX)
+       Lire(note)
+    FINTQ
+    
+FIN
+
+Algorithme Do_While
+DEBUT
+ Variable note : Entier
+    Constante  NOTE_MIN = 0
+    Constante  NOTE_MAX = 20
+    FAIRE 
+        Ecrire("Veuillez introduire une note entre "+NOTE_MIN+" et "+NOTE_MAX)
+        Lire(note)
+    TANTQUE note<NOTE_MIN OU note>NOTE_MAX
+FIN
